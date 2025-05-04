@@ -1,5 +1,5 @@
 import { t } from "elysia";
-import { TSchema } from "@sinclair/typebox";
+import { Static, TSchema } from "@sinclair/typebox";
 
 export const errorSchema = t.Object({
   success: t.Literal(false),

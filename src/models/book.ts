@@ -1,7 +1,6 @@
 import { Static, t } from "elysia";
 
-export const bookSchema = t.Object({
-  id: t.Optional(t.String()), // for updatet.String(),
+export const createBookSchema = t.Object({
   title: t.String(),
   author: t.String(),
   language: t.String(),
@@ -14,4 +13,12 @@ export const bookSchema = t.Object({
   totalCopies: t.Integer(),
 });
 
+export const bookSchema = t.Object({
+  id: t.String(),
+  ...createBookSchema.properties,
+});
+
+export const allBooksSchema = t.Array(bookSchema);
+
 export type Book = Static<typeof bookSchema>;
+export type CreateBook = Static<typeof createBookSchema>;
