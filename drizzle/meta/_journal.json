@@ -8,6 +8,13 @@
       "when": 1746300209406,
       "tag": "0000_gorgeous_sauron",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1746304225733,
+      "tag": "0001_brave_power_pack",
+      "breakpoints": true
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { t } from "elysia";
+import { Static, t } from "elysia";
 
 export const bookSchema = t.Object({
   title: t.String(),
@@ -13,4 +13,4 @@ export const bookSchema = t.Object({
   totalCopies: t.Integer(),
 });
 
-export type Book = typeof bookSchema.static;
+export type Book = Static<typeof bookSchema>;

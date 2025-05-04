@@ -7,20 +7,17 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 
-// USERS table
 export const role = pgEnum("role", ["ADMIN", "LIBRARIAN", "USER"]);
 export const users = pgTable("users", {
-  id: uuid("id").primaryKey().defaultRandom(), // Usando UUID como chave primária com geração automática
-  name: text("name").notNull(),
+  id: uuid("id").primaryKey().defaultRandom(),
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: role("role").default("USER").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-// BOOKS table
 export const books = pgTable("books", {
-  id: uuid("id").primaryKey().defaultRandom(), // Usando UUID como chave primária com geração automática
+  id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
   author: text("author").notNull(),
   language: text("language").notNull(),
@@ -34,7 +31,6 @@ export const books = pgTable("books", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-// LOANS table
 export const status = pgEnum("status", [
   "PENDING",
   "IN_PROGRESS",
@@ -42,7 +38,7 @@ export const status = pgEnum("status", [
   "LATE",
 ]);
 export const loans = pgTable("loans", {
-  id: uuid("id").primaryKey().defaultRandom(), // Usando UUID como chave primária com geração automática
+  id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id")
     .notNull()
     .references(() => users.id),
@@ -56,9 +52,8 @@ export const loans = pgTable("loans", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-// RESERVATIONS table
 export const reservations = pgTable("reservations", {
-  id: uuid("id").primaryKey().defaultRandom(), // Usando UUID como chave primária com geração automática
+  id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id")
     .notNull()
     .references(() => users.id),
