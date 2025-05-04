@@ -4,7 +4,7 @@ import { createBookHandler } from "../handlers/books/create.book.handler";
 import { errorSchema, successSchema } from "../models/response";
 
 export const bookRoutes = (app: Elysia) =>
-  app.model({ "book.create": bookSchema }).post("/books", createBookHandler, {
+  app.post("/books", createBookHandler, {
     body: bookSchema,
     response: { 201: successSchema(bookSchema), 409: errorSchema },
   });

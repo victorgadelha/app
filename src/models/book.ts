@@ -1,6 +1,7 @@
 import { Static, t } from "elysia";
 
 export const bookSchema = t.Object({
+  id: t.Optional(t.String()), // for updatet.String(),
   title: t.String(),
   author: t.String(),
   language: t.String(),
