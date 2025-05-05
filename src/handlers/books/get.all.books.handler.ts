@@ -1,13 +1,13 @@
-import { error } from "elysia";
+import { error as httpError } from "elysia";
 import { db } from "../../db/client";
 import { books } from "../../db/schema";
 
 export const getAllBooksHandler = async () => {
   const booksList = await db.select().from(books);
   if (booksList.length === 0) {
-    return error(404, {
+    return httpError(404, {
       success: false,
-      message: "No books found",
+      message: "No books found.",
     });
   }
 
