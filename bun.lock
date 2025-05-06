@@ -4,7 +4,7 @@
     "": {
       "name": "app",
       "dependencies": {
-        "elysia": "latest",
+        "elysia": "^1.2.25",
       },
       "devDependencies": {
         "bun-types": "latest",
