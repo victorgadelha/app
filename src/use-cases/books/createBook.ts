@@ -1,5 +1,5 @@
 import { db } from "../../database/client";
-import { books } from "../../database/schema";
+import { books } from "../../database/schemas/schema";
 import { bookSchema, CreateBook } from "../../models/book";
 import { eq } from "drizzle-orm";
 import { error as httpError } from "elysia";

@@ -1,6 +1,6 @@
 import { db } from "../../database/client";
 import { error as httpError } from "elysia";
-import { books } from "../../database/schema";
+import { books } from "../../database/schemas/schema";
 import { eq } from "drizzle-orm";
 
 export const getBookByID = async ({ params }: { params: { id: string } }) => {

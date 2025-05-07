@@ -1,6 +1,6 @@
 import { error as httpError } from "elysia";
 import { db } from "../../database/client";
-import { books } from "../../database/schema";
+import { books } from "../../database/schemas/schema";
 import { UpdateBook } from "../../models/book";
 import { eq } from "drizzle-orm";
 

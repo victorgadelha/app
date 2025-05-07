@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../../database/client";
 import { error as httpError } from "elysia";
-import { books } from "../../database/schema";
+import { books } from "../../database/schemas/schema";
 
 export const deleteBookByID = async ({
   params,
