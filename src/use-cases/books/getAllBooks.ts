@@ -1,8 +1,8 @@
 import { error as httpError } from "elysia";
-import { db } from "../../db/client";
-import { books } from "../../db/schema";
+import { db } from "../../database/client";
+import { books } from "../../database/schema";
 
-export const getAllBooksHandler = async () => {
+export const getAllBooks = async () => {
   try {
     const booksList = await db.select().from(books);
     if (booksList.length === 0) {
@@ -12,8 +12,7 @@ export const getAllBooksHandler = async () => {
       });
     }
     return { success: true as const, data: booksList };
-  } catch (error) {
-    console.error("Error fetching books:", error);
+  } catch (error: any) {
     return httpError(500, { success: false, message: "Internal server error" });
   }
 };

@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { bookRoutes } from "./routes/book.routes";
+import { bookRoutes } from "./routes/book";
 
 const app = new Elysia().use(bookRoutes).listen(3000);
 
