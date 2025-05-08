@@ -1,7 +1,7 @@
 import { t } from "elysia";
 import { Static } from "@sinclair/typebox";
 
-export const loginSchema = t.Object({
+export const signInSchema = t.Object({
   email: t.String(),
   password: t.String(),
 });
@@ -13,3 +13,4 @@ export const signUpSchema = t.Object({
 });
 
 export type SignUp = Static<typeof signUpSchema>;
+export type SignIn = Static<typeof signInSchema>;
