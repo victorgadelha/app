@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1746703500810,
-      "tag": "0000_large_baron_zemo",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1746703628958,
-      "tag": "0001_supreme_vivisector",
+      "when": 1746705501538,
+      "tag": "0000_broken_toro",
       "breakpoints": true
     }
   ]

@@ -32,7 +32,7 @@ export const status = pgEnum("status", [
 ]);
 export const loans = pgTable("loans", {
   id: uuid("id").primaryKey().defaultRandom(),
-  userId: text("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => users.id),
   bookId: uuid("book_id")
@@ -47,7 +47,7 @@ export const loans = pgTable("loans", {
 
 export const reservations = pgTable("reservations", {
   id: uuid("id").primaryKey().defaultRandom(),
-  userId: text("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => users.id),
   bookId: uuid("book_id")
