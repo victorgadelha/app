@@ -3,11 +3,43 @@ import { auth } from "../../../lib/auth";
 import { SignIn } from "../../models/auth";
 import { error as httpError } from "elysia";
 
-export const signIn = async ({ body }: { body: SignIn }) => {
+export const signIn = async ({
+  body,
+  set,
+  cookie,
+}: {
+  body: SignIn;
+  set: any;
+  cookie: any;
+}) => {
   try {
     const { email, password } = body;
-    const response = await auth.api.signInEmail({ body: { email, password } });
-    return { succes: true, data: response.user };
+    const { headers, response } = await auth.api.signInEmail({
+      returnHeaders: true,
+      body: { email, password },
+    });
+
+    const sessionCookie = headers.get("set-cookie");
+    if (!sessionCookie) throw new Error("Cookie de sessão não encontrado");
+
+    const [tokenPart, ...attributes] = sessionCookie.split("; ");
+    const [cookieName, cookieValue] = tokenPart.split("=");
+
+    cookie[cookieName].set({
+      value: decodeURIComponent(cookieValue),
+      ...Object.fromEntries(
+        attributes.map((attr) => {
+          const [key, value] = attr.split("=");
+          return [key.toLowerCase(), value ? decodeURIComponent(value) : true];
+        })
+      ),
+    });
+
+    set.status = 201;
+    return {
+      succes: true,
+      data: response.user,
+    };
   } catch (error) {
     if (error instanceof APIError && error.status === "UNAUTHORIZED")
       return httpError(401, {

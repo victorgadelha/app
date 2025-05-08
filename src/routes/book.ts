@@ -11,15 +11,18 @@ import { getBookByID } from "../use-cases/books/getBookById";
 import { deleteBookByID } from "../use-cases/books/deleteBook";
 import { updateBookByID } from "../use-cases/books/updateBookByID";
 import { successSchema, errorSchema } from "../models/response";
+import { betterAuth } from "../middlewares/auth";
 
 export const bookRoutes = new Elysia().group("/books", (app) =>
   app
+    .use(betterAuth)
     .get("/", getAllBooks, {
       response: {
         200: successSchema(allBooksSchema),
         404: errorSchema,
         500: errorSchema,
       },
+      auth: true,
     })
     .get("/:id", getBookByID, {
       response: {
