@@ -20,9 +20,8 @@ export const signIn = async ({
     });
 
     const sessionCookie = headers.get("set-cookie");
-    if (!sessionCookie) throw new Error("Cookie de sessão não encontrado");
 
-    const [tokenPart, ...attributes] = sessionCookie.split("; ");
+    const [tokenPart, ...attributes] = sessionCookie!.split("; ");
     const [cookieName, cookieValue] = tokenPart.split("=");
 
     cookie[cookieName].set({
