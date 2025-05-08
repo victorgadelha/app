@@ -4,7 +4,7 @@ import { auth } from "../lib/auth";
 import { cors } from "@elysiajs/cors";
 import { authRoutes } from "./routes/auth";
 
-const app = new Elysia()
+const app = new Elysia({ prefix: "/api/v1" })
   .use(
     cors({
       origin: "http://localhost:3001",
@@ -14,8 +14,8 @@ const app = new Elysia()
     })
   )
   .mount(auth.handler)
-  .use(bookRoutes)
   .use(authRoutes)
+  .use(bookRoutes)
   .listen(3000);
 
 console.log(

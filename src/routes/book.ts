@@ -12,16 +12,16 @@ import { deleteBookByID } from "../use-cases/books/deleteBook";
 import { updateBookByID } from "../use-cases/books/updateBookByID";
 import { successSchema, errorSchema } from "../models/response";
 
-export const bookRoutes = (app: Elysia) =>
+export const bookRoutes = new Elysia().group("/books", (app) =>
   app
-    .get("/books", getAllBooks, {
+    .get("/", getAllBooks, {
       response: {
         200: successSchema(allBooksSchema),
         404: errorSchema,
         500: errorSchema,
       },
     })
-    .get("/books/:id", getBookByID, {
+    .get("/:id", getBookByID, {
       response: {
         200: successSchema(bookSchema),
         404: errorSchema,
@@ -31,7 +31,7 @@ export const bookRoutes = (app: Elysia) =>
         id: t.String({ format: "uuid" }),
       }),
     })
-    .post("/books", createBook, {
+    .post("/", createBook, {
       body: createBookSchema,
       response: {
         201: successSchema(bookSchema),
@@ -39,7 +39,7 @@ export const bookRoutes = (app: Elysia) =>
         500: errorSchema,
       },
     })
-    .delete("/books/:id", deleteBookByID, {
+    .delete("/:id", deleteBookByID, {
       params: t.Object({
         id: t.String({ format: "uuid" }),
       }),
@@ -49,7 +49,7 @@ export const bookRoutes = (app: Elysia) =>
         500: errorSchema,
       },
     })
-    .put("books/:id", updateBookByID, {
+    .put("/:id", updateBookByID, {
       params: t.Object({
         id: t.String({ format: "uuid" }),
       }),
@@ -59,4 +59,5 @@ export const bookRoutes = (app: Elysia) =>
         404: errorSchema,
         500: errorSchema,
       },
-    });
+    })
+);
